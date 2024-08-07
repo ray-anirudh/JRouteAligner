@@ -21,7 +21,13 @@ public class GPSNodeReader {
 
             // Read body and process data
             while ((newline = gPSNodesReader.readLine()) != null) {
-                Long gPSNodeId =
+                String[] gPSNodeDataRecord = newline.split(",");
+                long gPSNodeId = Long.parseLong(gPSNodeDataRecord[gPSNodeIdIndex]);
+                double gPSNodeLongitude = Double.parseDouble(gPSNodeDataRecord[gPSNodeLongitudeIndex]);
+                double gPSNodeLatitude = Double.parseDouble(gPSNodeDataRecord[gPSNodeLatitudeIndex]);
+
+                GPSNode gPSNode = new GPSNode(gPSNodeId, gPSNodeLongitude, gPSNodeLatitude);
+                this.gPSNodes.put(gPSNodeId, gPSNode);
             }
 
         } catch (FileNotFoundException fNFE) {
@@ -42,5 +48,9 @@ public class GPSNodeReader {
             }
         }
         return index;
+    }
+
+    public LinkedHashMap<Long, GPSNode> getGPSNodes() {
+        return this.gPSNodes;
     }
 }

@@ -24,11 +24,11 @@ public class NetworkNodeReader {
             // Read body and process data
             long networkNodeId = 0;
             while ((newline = networkNodesReader.readLine()) != null) {
-                String[] nodeDataRecord = newline.split(",");
+                String[] networkNodeDataRecord = newline.split(",");
                 networkNodeId++;
 
-                double networkNodeLongitude = Double.parseDouble(nodeDataRecord[networkNodeLongitudeIndex]);
-                double networkNodeLatitude = Double.parseDouble(nodeDataRecord[networkNodeLatitudeIndex]);
+                double networkNodeLongitude = Double.parseDouble(networkNodeDataRecord[networkNodeLongitudeIndex]);
+                double networkNodeLatitude = Double.parseDouble(networkNodeDataRecord[networkNodeLatitudeIndex]);
                 NetworkNode networkNode = new NetworkNode(networkNodeLongitudeIndex, networkNodeLatitudeIndex);
                 this.networkNodes.put(networkNodeId, networkNode);
             }
@@ -50,5 +50,9 @@ public class NetworkNodeReader {
             }
         }
         return index;
+    }
+
+    LinkedHashMap<Long, NetworkNode> getNetworkNodes() {
+        return this.networkNodes;
     }
 }
