@@ -7,7 +7,7 @@ public class GPSNodeReader {
     private final LinkedHashMap<Long, GPSNode> gPSNodes = new LinkedHashMap<>();
 
     // Read and store all the GPS nodes in the aforementioned hashmap
-    private void readGPSNodes (String gPSNodesFilePath) {
+    public void readGPSNodes (String gPSNodesFilePath) {
         try{
             // Create a reader for the GPS nodes file
             BufferedReader gPSNodesReader = new BufferedReader(new FileReader(gPSNodesFilePath));

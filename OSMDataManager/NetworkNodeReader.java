@@ -10,7 +10,7 @@ public class NetworkNodeReader {
     private final LinkedHashMap<Long, NetworkNode> networkNodes = new LinkedHashMap<>();
 
     // Read and store all the network nodes in the aforementioned hashmap
-    private void readNetworkNodes(String networkNodesFilePath) {
+    public void readNetworkNodes(String networkNodesFilePath) {
         try {
             // Create a reader for the "nodes.csv" file
             BufferedReader networkNodesReader = new BufferedReader(new FileReader(networkNodesFilePath));
@@ -52,7 +52,7 @@ public class NetworkNodeReader {
         return index;
     }
 
-    LinkedHashMap<Long, NetworkNode> getNetworkNodes() {
+    public LinkedHashMap<Long, NetworkNode> getNetworkNodes() {
         return this.networkNodes;
     }
 }

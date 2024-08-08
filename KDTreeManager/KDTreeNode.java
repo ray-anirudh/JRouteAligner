@@ -12,6 +12,18 @@ public class KDTreeNode {   // Use for node-based KD-Trees
         this.left = this.right = null;
     }
 
+    public double equiRectangularDistanceTo(double otherPointLongitude, double otherPointLatitude) {
+        final int EARTH_RADIUS_M = 6_371_000;
+
+        double longitudeDifference = Math.toRadians(this.networkNode.getNetworkNodeLongitude() - otherPointLongitude);
+        double latitudeDifference = Math.toRadians(this.networkNode.getNetworkNodeLatitude() - otherPointLatitude);
+
+        double x = longitudeDifference * Math.cos(Math.toRadians((this.networkNode.getNetworkNodeLatitude() +
+                otherPointLatitude) / 2));
+
+        return EARTH_RADIUS_M * Math.sqrt(x * x + latitudeDifference * latitudeDifference);
+    }
+
     public void setLeft(KDTreeNode left) {
         this.left = left;
     }
